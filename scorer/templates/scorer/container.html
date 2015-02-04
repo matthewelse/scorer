@@ -1,0 +1,50 @@
+{# Template originally by Alan Egan #}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ quiz_name }}</title>
+        <link href="{% static "style.css" %}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="{% static "jquery.js" %}"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#page").load('/scoring/rank/');
+                $.ajaxSetup({ cache: false });
+            });
+
+            window.setInterval(function(){checkstat()}, 2000);
+
+            function checkstat()
+            {
+                $.get("/scoring/status/")
+                 .done(function(data) {
+                    if(data == 'podium') refreshtopodium();
+                    if(data == 'rank') refreshtorank();
+                    else if(data == 'fade') blankpage();
+                 });
+            }
+
+            function refreshtopodium()
+            {
+                blankpage();
+                setTimeout( "loadpodium();", 2000);
+            }
+
+            function refreshtorank()
+            {
+                blankpage();
+                setTimeout( "loadrank();", 2000);
+            }
+
+            function loadpodium(){ $("#page").load('/scoring/podium/').fadeIn(2000); }
+            function loadrank(){ $("#page").load('/scoring/rank/').fadeIn(2000); }
+
+            function blankpage(){ $("#page").fadeOut(2000); }
+        </script>
+    </head>
+    <body>
+        <div id="page">
+            
+        </div>
+    </body>
+</html>

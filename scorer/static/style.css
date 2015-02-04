@@ -1,0 +1,241 @@
+/*
+by Alan Egan
+*/
+
+body{
+	margin:0;
+	overflow:hidden;
+	background-color:#000000;
+}
+
+#page{
+	position:relative;
+	margin:0 auto;
+	width:1024px;
+	height:768px;
+	text-align:center;
+	background-color:#000000;
+}
+
+#site{
+	position:absolute;
+	top:20px;
+	bottom:20px;
+	left:20px;
+	right:20px;
+	background-color:#1c1c1c;
+	margin:0 auto;
+}
+
+#title{
+	position:absolute;
+	top:20px;
+	left:20px;
+	right:20px;
+	height:100px;
+	font-family:'Helvetica';
+	font-size:60px;
+}
+
+#first{
+	margin-left:10px;
+	margin-top:10px;
+}
+
+#firstname{
+	position:absolute;
+	top:25px;
+	left:130px;
+	right:80px;
+	height:60px;
+	text-align:center;
+	font-family:'Helvetica';
+	color:#ffffff;
+	font-size:50px;
+	font-weight:lighter;
+
+}
+
+#firstspacer{
+	position:absolute;
+	top:90px;
+	left:160px;
+	right:110px;
+	height:2px;
+	background-color:#ffffff;
+}
+
+#firstpoints{
+	position:absolute;
+	text-align:center;
+	font-family:'Helvetica';
+	font-style:italic;
+	color:#cecece;
+	font-size:40px;
+	font-weight:lighter;
+	top:100px;
+	left:130px;
+	right:80px;
+	height:60px;
+}
+
+#st{
+	position:absolute;
+	top:105px;
+	left:20px;
+	right:20px;
+	height:160px;
+	background-color:#2f2f2f;
+	text-align:left;
+}
+
+#second{
+	margin-left:10px;
+	margin-top:10px;
+}
+
+#secondname{
+	position:absolute;
+	top:15px;
+	left:80px;
+	right:40px;
+	height:25px;
+	text-align:center;
+	font-family:'Helvetica';
+	color:#ffffff;
+	font-size:25px;
+	font-weight:lighter;
+}
+
+#secondspacer{
+	position:absolute;
+	top:44px;
+	left:90px;
+	right:50px;
+	height:2px;
+	background-color:#ffffff;
+}
+
+#secondpoints{
+	position:absolute;
+	text-align:center;
+	font-family:'Helvetica';
+	font-style:italic;
+	color:#cecece;
+	font-size:20px;
+	font-weight:lighter;
+	top:50px;
+	left:80px;
+	right:40px;
+	height:25px;
+}
+
+#nd{
+	position:absolute;
+	top:285px;
+	left:20px;
+	width:462px;
+	height:80px;
+	background-color:#2f2f2f;
+	text-align:left;
+}
+
+#thirdname{
+	position:absolute;
+	top:15px;
+	left:80px;
+	right:40px;
+	height:25px;
+	text-align:center;
+	font-family:'Helvetica';
+	color:#ffffff;
+	font-size:25px;
+	font-weight:lighter;
+}
+
+#thirdspacer{
+	position:absolute;
+	top:44px;
+	left:90px;
+	right:50px;
+	height:2px;
+	background-color:#ffffff;
+}
+
+#thirdpoints{
+	position:absolute;
+	text-align:center;
+	font-family:'Helvetica';
+	font-style:italic;
+	color:#cecece;
+	font-size:20px;
+	font-weight:lighter;
+	top:50px;
+	left:80px;
+	right:40px;
+	height:25px;
+}
+
+#third{
+	margin-left:10px;
+	margin-top:10px;
+}
+
+#rd{
+	position:absolute;
+	top:285px;
+	right:20px;
+	width:462px;
+	height:80px;
+	background-color:#2f2f2f;
+	text-align:left;
+}
+
+.nonpodium{
+	top:105px !important;
+}
+
+#rest{
+	position:absolute;
+	padding:15px;
+	top:385px;
+	right:20px;
+	left:20px;
+	bottom:20px;
+	background-color:#2f2f2f;
+	text-align:center;
+	font-family:'Helvetica';
+	font-size:20px;
+	-webkit-column-count:2;
+	-webkit-column-gap:30px;
+	-moz-column-count:2;
+	-moz-column-gap:30px;
+}
+
+hr{
+	margin-top:2px;
+	margin-bottom:1px;
+	border:0px;
+	border-top:1px solid #1c1c1c;
+}
+
+#spacer{
+	position:absolute;
+	left:470px;
+	right:470px;
+	top:20px;
+	bottom:20px;
+	background-color:#1c1c1c;
+}
+
+.smalljoker{
+	position:absolute;
+	right:10px;
+	top:10px;
+}
+
+.largejoker{
+	position:absolute;
+	right:10px;
+	top:13px;
+}
