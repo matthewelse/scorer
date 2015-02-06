@@ -26,13 +26,12 @@ class Team(models.Model):
         return sum(scores)
 
     def position_raw(self):
-        current_event = Event.objects.get(active=True)
-        scores = list(sorted([team.score() for team in Team.objects.filter(event=current_event)], reverse=True))
+        scores = list(sorted([team.score() for team in Team.objects.filter(event=self.event)], reverse=True))
         return scores.index(self.score()) + 1
 
     def position(self):
         current_event = Event.objects.get(active=True)
-        scores = list(sorted([team.score() for team in Team.objects.filter(event=current_event)], reverse=True))
+        scores = list(sorted([team.score() for team in Team.objects.filter(event=self.event)], reverse=True))
         return scores.index(self.score()) + 1, scores.count(self.score()) >= 2
 
     def position_pretty(self):
