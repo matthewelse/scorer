@@ -50,14 +50,15 @@ class RoundScoreInline(admin.StackedInline):
 	extra = 3
 
 class TeamAdmin(admin.ModelAdmin):
-	list_display = ('name', 'used_joker', 'joker_round', 'score', 'position_pretty')
-	list_filter = ('joker_round',)
+	list_display = ('name', 'used_joker', 'joker_round', 'score', 'position_pretty', 'rounds_scored')
+	list_filter = ('event',)
 
 	inlines = [RoundScoreInline]
 	actions = [set_to_current_event]
 
 class RoundAdmin(admin.ModelAdmin):
-	list_display = ('active', 'full_name', 'average_score', 'jokers', 'can_use_joker', 'maximum_score')
+	list_display = ('full_name', 'active', 'average_score', 'jokers', 'can_use_joker', 'maximum_score')
+	list_filter = ('event',)
 
 	actions = [make_active_round, clear_active_round, set_to_current_event]
 

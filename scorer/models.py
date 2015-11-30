@@ -16,7 +16,7 @@ class Team(models.Model):
     event = models.ForeignKey('Event', null=True)
 
     def used_joker(self):
-        return self.joker_round is not None
+        return self.joker_round is not None and len(RoundScore.objects.filter(team=self, round=self.joker_round)) != 0
     used_joker.boolean = True
 
     def score(self):
@@ -37,6 +37,9 @@ class Team(models.Model):
     def position_pretty(self):
         score, joint = self.position()
         return "%s%i" % ('=' if joint else '', score)
+
+    def rounds_scored(self):
+        return len(RoundScore.objects.filter(team=self))
 
     def position_web(self):
         ordinals = {
@@ -70,7 +73,7 @@ class Round(models.Model):
             return None
         else:
             scores = [x.score for x in RoundScore.objects.filter(round=self)]
-            return sum(scores)/len(scores)
+            return "%.1f" % (sum(scores)/len(scores))
 
     def jokers(self):
         return len(Team.objects.filter(joker_round=self))
@@ -82,7 +85,7 @@ class Round(models.Model):
         return "%s/%s" % (self.event.name, self.name)
 
 class RoundScore(models.Model):
-    round = models.ForeignKey('Round')
+    round = models.ForeignKey('Round', limit_choices_to={'event__active': True})
     team = models.ForeignKey('Team', limit_choices_to={'event__active': True})
 
     score = models.DecimalField(decimal_places=1, max_digits=5)

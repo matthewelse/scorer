@@ -8,7 +8,7 @@
 	{% for team in teams %}
 		<font color="#777777" style="font-style:italic">{{ team.position_web | safe }}&nbsp;&nbsp;
 			</font><font color="#ffffff">{{ team.name | truncatechars:25 }}</font>&nbsp;&nbsp;
-			<div style="display:inline-block"><font color="#bbbbbb" style="font-style:italic">{{ team.score }} Point{% if team.score > 1 or team.score == 0 %}s{% endif %}</font>
+			<div style="display:inline-block"><font color="#bbbbbb" style="font-style:italic">{{ team.score }} Point{% if team.score != 1 %}s{% endif %}</font>
 			&nbsp;{% if team.used_joker %}<font color="#ffc800">J</font>{% endif %}</div><hr>
 	{% endfor %}
 		<div id="spacer">
