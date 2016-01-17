@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Event(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
     active = models.BooleanField(default=False)
     current_status = models.CharField(max_length=10, null=True, blank=True)
 
@@ -11,7 +11,7 @@ class Event(models.Model):
         return self.name
 
 class Team(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
     joker_round = models.ForeignKey('Round', null=True, blank=True, limit_choices_to={'can_use_joker': True})
     event = models.ForeignKey('Event', null=True)
 
@@ -62,7 +62,7 @@ class Team(models.Model):
         return self.name
 
 class Round(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=50)
     can_use_joker = models.BooleanField(default=True)
     maximum_score = models.DecimalField(default=10.0, decimal_places=1, max_digits=5)
     active = models.BooleanField(default=False)
