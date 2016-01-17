@@ -60,6 +60,7 @@ class RoundAdmin(admin.ModelAdmin):
 	list_display = ('full_name', 'active', 'average_score', 'jokers', 'can_use_joker', 'maximum_score')
 	list_filter = ('event',)
 
+	inlines = [RoundScoreInline]
 	actions = [make_active_round, clear_active_round, set_to_current_event]
 
 class RoundScoreAdmin(admin.ModelAdmin):
