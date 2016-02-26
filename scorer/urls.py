@@ -22,5 +22,6 @@ urlpatterns = patterns('',
     url(r'^rank/$', views.rank),
     url(r'^status/$', views.get_status),
     url(r'^setstatus/(?P<type>\w+)$', views.set_status),
-    url(r'^controls/$', views.controls)
+    url(r'^controls/$', views.controls),
+    url(r'^exportcsv/$', views.export_csv)
 )

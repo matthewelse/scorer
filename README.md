@@ -15,6 +15,7 @@ $ ./manage.py runserver
 
 * Use http://localhost:8000/scoring/bigscreen for a projector.
 * Use http://localhost:8000/scoring/controls for controlling the big screen
+* Use http://localhost:8000/scoring/exportcsv to download a CSV of results for the current event
 * Use the normal Django Admin for configuring things and setting scores.
 
 ## Deploy to Heroku

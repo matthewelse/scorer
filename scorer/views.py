@@ -12,10 +12,13 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+import csv
+
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from scorer.models import Team, Round, Event
+from scorer.models import Team, Round, Event, RoundScore
 
 # Create your views here.
 
@@ -81,7 +84,7 @@ def set_status(request, type):
 	current_event = Event.objects.get(active=True)
 	current_event.current_status=type
 	current_event.save()
-	
+
 	return HttpResponse("")
 
 def get_status(request):
@@ -92,3 +95,41 @@ def get_status(request):
 	current_event.save()
 
 	return HttpResponse(status)
+
+def export_csv(request):
+    current_event = Event.objects.get(active=True)
+    rounds = list(Round.objects.filter(event=current_event))
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=' + current_event.name + '.csv'
+
+    writer = csv.writer(response, csv.excel)
+    response.write(u'\ufeff'.encode('utf8'))
+
+    headings = [u"Team Name", u"Total Score", u"Position", u"Rounds Scored", u"Joker Round"]
+    for round in rounds:
+	headings.append(round.name)
+
+    writer.writerow(headings)
+    teams = list(Team.objects.filter(event=current_event))
+
+    scores = []
+
+    for team in teams:
+        team_data = [team.name, team.score(), team.position_pretty(), team.rounds_scored(), team.joker_round.name]
+	scores.append(team.score())
+        for round in rounds:
+		score = RoundScore.objects.get(team=team, round=round).score
+		if team.joker_round == round:
+			score = score * 2
+		team_data.append(score)
+	writer.writerow(team_data)
+
+    mean_score = sum(scores) / len(scores)
+
+    averages = [u"Means", mean_score, u"N/A", u"N/A", u"N/A"]
+    for round in rounds:
+	averages.append(round.average_score())
+    writer.writerow(averages)
+
+    return response
