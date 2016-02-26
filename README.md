@@ -25,7 +25,7 @@ heroku create
 git push heroku master
 
 # create database etc
-heroku run manage.py syncdb
+heroku run ./manage.py migrate --run-syncdb
 
 # see the wonderful masterpiece
 heroku open
