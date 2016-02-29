@@ -57,6 +57,33 @@ def podium(request):
 	}
 
 	return render(request, 'scorer/podium.html', context)
+	
+def top3(request):
+	current_event = Event.objects.get(active=True)
+	teams = sorted(list(Team.objects.filter(event=current_event)), key=lambda team: team.score(), reverse=True)
+
+	if len(teams) < 3:
+		print("uh oh")
+		return rank(request)
+
+	first_place = teams.pop(0)
+	second_place = teams.pop(0)
+	third_place = teams.pop(0)
+
+	try:
+		current_round = Round.objects.get(active=True, event=current_event).name
+	except:
+		current_round = ""
+
+	context = {
+		'quiz_name': current_event.name,
+		'current_round': current_round,
+		'first_place': first_place,
+		'second_place': second_place,
+		'third_place': third_place,
+	}
+
+	return render(request, 'scorer/top3.html', context)
 
 def rank(request):
 	current_event = Event.objects.get(active=True)

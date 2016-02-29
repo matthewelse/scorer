@@ -21,6 +21,11 @@
         		console.log("RANK");
         		$.get('/scoring/setstatus/rank');
         	});
+        	
+        	$("#top3").click(function() {
+        		console.log("TOP3");
+        		$.get('/scoring/setstatus/top3');
+        	});
         })
         </script>
     </head>
@@ -30,5 +35,6 @@
 		<button id="fade">Fade to Black</button>
 		<button id="podium">Show/Refresh Podium</button>
 		<button id="rank">Show/Refresh Ranks</button>
+		<button id="top3">Show Top 3</button>
 	</body>
 </html>

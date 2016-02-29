@@ -20,6 +20,7 @@
                  .done(function(data) {
                     if(data == 'podium') refreshtopodium();
                     if(data == 'rank') refreshtorank();
+                    if(data == 'top3') refreshtotop3();
                     else if(data == 'fade') blankpage();
                  });
             }
@@ -35,9 +36,16 @@
                 blankpage();
                 setTimeout( "loadrank();", 2000);
             }
+            
+            function refreshtotop3()
+            {
+                blankpage();
+                setTimeout( "loadtop3();", 2000);
+            }
 
             function loadpodium(){ $("#page").load('/scoring/podium/').fadeIn(2000); }
             function loadrank(){ $("#page").load('/scoring/rank/').fadeIn(2000); }
+            function loadtop3(){ $("#page").load('/scoring/top3/').fadeIn(2000); }
 
             function blankpage(){ $("#page").fadeOut(2000); }
         </script>
