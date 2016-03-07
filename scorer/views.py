@@ -143,13 +143,18 @@ def export_csv(request):
     scores = []
 
     for team in teams:
-        team_data = [team.name, team.score(), team.position_pretty(), team.rounds_scored(), team.joker_round.name]
+        team_data = [team.name, team.score(), team.position_pretty(), team.rounds_scored()]
+	if team.used_joker():
+		team_data.append(team.joker_round.name)
+	else:
+		team_data.append("N/A")
 	scores.append(team.score())
-        for round in rounds:
+	for round in rounds:
 		score = RoundScore.objects.get(team=team, round=round).score
 		if team.joker_round == round:
 			score = score * 2
 		team_data.append(score)
+
 	writer.writerow(team_data)
 
     mean_score = sum(scores) / len(scores)
